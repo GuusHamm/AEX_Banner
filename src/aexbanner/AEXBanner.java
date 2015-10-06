@@ -7,17 +7,23 @@ import javafx.stage.Stage;
 
 public class AEXBanner extends javafx.application.Application {
 
+    private AEXBannerController aexBannerController;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AEXBanner.fxml"));
-        fxmlLoader.setController(new AEXBannerController(this));
+        aexBannerController = new AEXBannerController(this);
+        fxmlLoader.setController(aexBannerController);
 
         primaryStage.setTitle("AEXBanner");
         primaryStage.setScene(new Scene(fxmlLoader.load(), 300, 275));
         primaryStage.show();
     }
 
-    public void stop() {
+    public void stop() throws Exception {
+        super.stop();
+        aexBannerController.stop();
+
         // TODO - implement Application.stop
 
     }
